@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../common.css">
+  <script src="./script.js"></script>
+  <script src="../utils.js"></script>
+</head>
+<body>
+  <div class="center">
+    <div class="text">
+      <p id="t1" class="lycoris lycoris-vertical">ワケがある</p>
+      <p id="t2" class="lycoris lycoris-vertical">この日常には、</p>
+    </div>
+  </div>
+
+  <script>
+    const style = `
+      padding: 4px;
+      display: inline-block;
+      z-index: 0;
+      position: relative;
+      margin: 0;
+      padding: 0;
+      font-size: 36px;
+      writing-mode: vertical-lr;
+    `
+
+    const t1Size = calculateTextSize("自有其原因。", style)
+    const t2Size = calculateTextSize("这份日常背后，", style)
+
+    document.querySelector("#t1").style.width = t1Size.width + "px"
+    document.querySelector("#t2").style.width = t2Size.width + "px"
+    document.querySelector("#t1").style.height = t1Size.height + "px"
+    document.querySelector("#t2").style.height = t2Size.height + "px"
+
+    new Lycoris('#t2')
+      .onEnd((type, t) => {
+        t.text('这份日常背后，')
+      })
+      .color("#F0565B")
+      .play()
+
+    new Lycoris('#t1')
+      .onEnd((type, t) => {
+        t.text('自有其原因。')
+      })
+      .color("#01B4AA")
+      .play()
+  </script>
+</body>
+</html>
